@@ -1,5 +1,0 @@
-name: "TestConfig"
-amount: 3
-credentials:
-  user: "user"
-  password: "secret"
