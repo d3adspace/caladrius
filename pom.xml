@@ -58,7 +58,7 @@
     </build>
 
     <scm>
-        <developerConnection>scm:git:https://github.com/d3adspace/caladrius.git</developerConnection>
+        <developerConnection>scm:git:git@github.com:d3adspace/caladrius.git</developerConnection>
         <tag>1.2</tag>
     </scm>
 </project>
