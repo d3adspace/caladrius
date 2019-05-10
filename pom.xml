@@ -43,4 +43,8 @@
         </plugins>
     </build>
 
+    <scm>
+        <developerConnection>scm:git:https://github.com/d3adspace/caladrius.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
 </project>
