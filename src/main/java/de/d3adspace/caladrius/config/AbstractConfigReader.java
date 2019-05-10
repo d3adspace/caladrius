@@ -7,15 +7,9 @@ import java.util.Map;
 public abstract class AbstractConfigReader<ConfigObjectType> implements ConfigReader<ConfigObjectType> {
 
     private final ConfigMeta<ConfigObjectType> configMeta;
-    private final Path path;
 
-    public AbstractConfigReader(ConfigMeta<ConfigObjectType> configMeta, Path path) {
+    public AbstractConfigReader(ConfigMeta<ConfigObjectType> configMeta) {
         this.configMeta = configMeta;
-        this.path = path;
-    }
-
-    public Path getPath() {
-        return path;
     }
 
     @Override
