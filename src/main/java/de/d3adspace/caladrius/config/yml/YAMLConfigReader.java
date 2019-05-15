@@ -1,7 +1,6 @@
 package de.d3adspace.caladrius.config.yml;
 
-import de.d3adspace.caladrius.Caladrius;
-import de.d3adspace.caladrius.config.AbstractConfigReader;
+import com.google.common.flogger.FluentLogger;
 import de.d3adspace.caladrius.config.AbstractMapBasedConfigReader;
 import de.d3adspace.caladrius.config.ConfigMeta;
 import org.yaml.snakeyaml.Yaml;
@@ -18,6 +17,12 @@ public class YAMLConfigReader<ConfigObjectType> extends AbstractMapBasedConfigRe
      */
     private static final Yaml YAML = new Yaml();
 
+    /**
+     * Create a new yaml config reader by the meta of the config to read and the path of the config.
+     *
+     * @param configMeta The meta of the config to read.
+     * @param path The path of the config.
+     */
     public YAMLConfigReader(ConfigMeta<ConfigObjectType> configMeta, Path path) {
         super(configMeta, path);
     }
@@ -50,6 +55,12 @@ public class YAMLConfigReader<ConfigObjectType> extends AbstractMapBasedConfigRe
     protected boolean readBoolean(String key) {
         Map<String, Object> content = resolveContentRoot(key);
         return (boolean) content.get(stripKey(key));
+    }
+
+    @Override
+    protected long readLong(String key) {
+        Map<String, Object> content = resolveContentRoot(key);
+        return (long) content.get(stripKey(key));
     }
 
     @Override

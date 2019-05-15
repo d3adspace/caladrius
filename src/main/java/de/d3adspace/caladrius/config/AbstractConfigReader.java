@@ -1,5 +1,6 @@
 package de.d3adspace.caladrius.config;
 
+import com.google.common.flogger.FluentLogger;
 import de.d3adspace.caladrius.Caladrius;
 
 import java.lang.reflect.Field;
@@ -7,6 +8,8 @@ import java.nio.file.Path;
 import java.util.Map;
 
 public abstract class AbstractConfigReader<ConfigObjectType> implements ConfigReader<ConfigObjectType> {
+
+    private final FluentLogger logger = FluentLogger.forEnclosingClass();
 
     private final ConfigMeta<ConfigObjectType> configMeta;
     private final Path path;
@@ -29,7 +32,9 @@ public abstract class AbstractConfigReader<ConfigObjectType> implements ConfigRe
                 field.setAccessible(true);
                 field.set(configObject, value);
             } catch (IllegalAccessException e) {
-                e.printStackTrace();
+                logger.atWarning()
+                        .withCause(e)
+                        .log("Couldn't set field %s in config model.");
             }
         });
 
@@ -47,6 +52,8 @@ public abstract class AbstractConfigReader<ConfigObjectType> implements ConfigRe
             return readFloat(key);
         } else if (fieldType == Boolean.TYPE) {
             return readBoolean(key);
+        } else if (fieldType == Long.TYPE) {
+            return readLong(key);
         }
 
         return null;
@@ -87,4 +94,5 @@ public abstract class AbstractConfigReader<ConfigObjectType> implements ConfigRe
     protected abstract double readDouble(String key);
     protected abstract float readFloat(String key);
     protected abstract boolean readBoolean(String key);
+    protected abstract long readLong(String key);
 }
