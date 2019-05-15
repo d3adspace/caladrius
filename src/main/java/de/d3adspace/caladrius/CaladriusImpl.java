@@ -5,9 +5,11 @@ import com.google.common.collect.Maps;
 import de.d3adspace.caladrius.annotation.Config;
 import de.d3adspace.caladrius.annotation.Key;
 import de.d3adspace.caladrius.config.ConfigMeta;
-import de.d3adspace.caladrius.config.ConfigReader;
+import de.d3adspace.caladrius.config.reader.ConfigReader;
 import de.d3adspace.caladrius.config.ConfigType;
-import de.d3adspace.caladrius.config.yml.YAMLConfigReader;
+import de.d3adspace.caladrius.config.reader.yaml.YAMLConfigReader;
+import de.d3adspace.caladrius.config.writer.ConfigWriter;
+import de.d3adspace.caladrius.config.writer.yaml.YAMLConfigWriter;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -47,6 +49,24 @@ public class CaladriusImpl implements Caladrius {
         // Read config
         config = configReader.readConfig(config);
         return config;
+    }
+
+    @Override
+    public <ConfigObjectType> void writeConfig(ConfigObjectType configObject, Path path) {
+        Class<ConfigObjectType> configClazz = (Class<ConfigObjectType>) configObject.getClass();
+        ConfigMeta<ConfigObjectType> configMeta = getConfigMeta(configClazz);
+
+        ConfigWriter<ConfigObjectType> configWriter = createConfigWriter(configMeta, path);
+        configWriter.writeConfig(configObject);
+    }
+
+    private <ConfigObjectType> ConfigWriter<ConfigObjectType> createConfigWriter(ConfigMeta<ConfigObjectType> configMeta, Path path) {
+
+        switch (configMeta.getType()) {
+            default: {
+                return new YAMLConfigWriter<>(configMeta, path);
+            }
+        }
     }
 
     /**

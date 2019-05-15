@@ -1,4 +1,4 @@
-package de.d3adspace.caladrius.config;
+package de.d3adspace.caladrius.config.reader;
 
 public interface ConfigReader<ConfigObjectType> {
 

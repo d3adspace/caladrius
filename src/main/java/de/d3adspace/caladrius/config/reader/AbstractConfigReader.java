@@ -1,27 +1,25 @@
-package de.d3adspace.caladrius.config;
+package de.d3adspace.caladrius.config.reader;
 
 import com.google.common.flogger.FluentLogger;
-import de.d3adspace.caladrius.Caladrius;
+import de.d3adspace.caladrius.config.AbstractConfigIO;
+import de.d3adspace.caladrius.config.ConfigMeta;
+import de.d3adspace.caladrius.config.reader.ConfigReader;
 
 import java.lang.reflect.Field;
 import java.nio.file.Path;
 import java.util.Map;
 
-public abstract class AbstractConfigReader<ConfigObjectType> implements ConfigReader<ConfigObjectType> {
+public abstract class AbstractConfigReader<ConfigObjectType> extends AbstractConfigIO<ConfigObjectType> implements ConfigReader<ConfigObjectType> {
 
     private final FluentLogger logger = FluentLogger.forEnclosingClass();
 
-    private final ConfigMeta<ConfigObjectType> configMeta;
-    private final Path path;
-
     public AbstractConfigReader(ConfigMeta<ConfigObjectType> configMeta, Path path) {
-        this.configMeta = configMeta;
-        this.path = path;
+        super(configMeta, path);
     }
 
     @Override
     public ConfigObjectType readConfig(ConfigObjectType configObject) {
-        Map<String, Field> fields = configMeta.getFields();
+        Map<String, Field> fields = getConfigMeta().getFields();
 
         fields.forEach((key, field) -> {
 
@@ -34,7 +32,7 @@ public abstract class AbstractConfigReader<ConfigObjectType> implements ConfigRe
             } catch (IllegalAccessException e) {
                 logger.atWarning()
                         .withCause(e)
-                        .log("Couldn't set field %s in config model.");
+                        .log("Couldn't set field %s in config model.", key);
             }
         });
 
@@ -57,36 +55,6 @@ public abstract class AbstractConfigReader<ConfigObjectType> implements ConfigRe
         }
 
         return null;
-    }
-
-    /**
-     * Check if the given key is pathed.
-     *
-     * @param key The key.
-     * @return If the key is pathed.
-     */
-    private boolean isPathedKey(String key) {
-        return key.contains(Caladrius.PATH_DELIMITER);
-    }
-
-    /**
-     * Strip the key of his path and return the bare key.
-     *
-     * @param key The key.
-     * @return The bare key without path.
-     */
-    protected String stripKey(String key) {
-        boolean isPathedKey = isPathedKey(key);
-        if (!isPathedKey) {
-            return key;
-        }
-
-        String[] split = key.split(Caladrius.PATH_DELIMITER_PATTERN);
-        return split[split.length - 1];
-    }
-
-    public Path getPath() {
-        return path;
     }
 
     protected abstract String readString(String key);

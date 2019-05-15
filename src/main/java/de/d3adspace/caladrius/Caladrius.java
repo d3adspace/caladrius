@@ -23,4 +23,13 @@ public interface Caladrius {
      * @return The read config.
      */
     <ConfigType> ConfigType readConfig(Class<ConfigType> configClazz, Path path);
+
+    /**
+     * Write the given config to the given path.
+     *
+     * @param configObject The config object.
+     * @param path The path of the file to write to.
+     * @param <ConfigObjectType> The generic type of the config.
+     */
+    <ConfigObjectType> void writeConfig(ConfigObjectType configObject, Path path);
 }

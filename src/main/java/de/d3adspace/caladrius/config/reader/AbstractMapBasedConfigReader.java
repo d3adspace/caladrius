@@ -1,12 +1,14 @@
-package de.d3adspace.caladrius.config;
+package de.d3adspace.caladrius.config.reader;
 
 import com.google.common.flogger.FluentLogger;
 import de.d3adspace.caladrius.Caladrius;
+import de.d3adspace.caladrius.config.ConfigMeta;
+import de.d3adspace.caladrius.config.map.ContentRootMapResolver;
 
 import java.nio.file.Path;
 import java.util.Map;
 
-public abstract class AbstractMapBasedConfigReader<ConfigObjectType> extends AbstractConfigReader<ConfigObjectType> {
+public abstract class AbstractMapBasedConfigReader<ConfigObjectType> extends AbstractConfigReader<ConfigObjectType> implements ContentRootMapResolver<String, Object> {
 
     /**
      * The logger that will log skipped fields and exceptions.
@@ -29,6 +31,43 @@ public abstract class AbstractMapBasedConfigReader<ConfigObjectType> extends Abs
         content = doRead();
     }
 
+
+    @Override
+    protected String readString(String key) {
+        Map<String, Object> content = resolveContentRoot(key);
+        return (String) content.get(stripKey(key));
+    }
+
+    @Override
+    protected int readInt(String key) {
+        Map<String, Object> content = resolveContentRoot(key);
+        return (int) content.get(stripKey(key));
+    }
+
+    @Override
+    protected double readDouble(String key) {
+        Map<String, Object> content = resolveContentRoot(key);
+        return (double) content.get(stripKey(key));
+    }
+
+    @Override
+    protected float readFloat(String key) {
+        Map<String, Object> content = resolveContentRoot(key);
+        return (float) content.get(stripKey(key));
+    }
+
+    @Override
+    protected boolean readBoolean(String key) {
+        Map<String, Object> content = resolveContentRoot(key);
+        return (boolean) content.get(stripKey(key));
+    }
+
+    @Override
+    protected long readLong(String key) {
+        Map<String, Object> content = resolveContentRoot(key);
+        return (long) content.get(stripKey(key));
+    }
+
     /**
      * Read the whole config into a map.
      *
@@ -42,7 +81,8 @@ public abstract class AbstractMapBasedConfigReader<ConfigObjectType> extends Abs
      * @param key The key.
      * @return The content root.
      */
-    protected Map<String, Object> resolveContentRoot(String key) {
+    @Override
+    public Map<String, Object> resolveContentRoot(String key) {
         if (!key.contains(Caladrius.PATH_DELIMITER)) {
             return content;
         }
