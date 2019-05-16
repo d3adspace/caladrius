@@ -4,7 +4,7 @@
 
     <groupId>de.d3adspace.caladrius</groupId>
     <artifactId>caladrius</artifactId>
-    <version>1.9-SNAPSHOT</version>
+    <version>1.9</version>
 
     <dependencies>
 
@@ -98,6 +98,6 @@
 
     <scm>
         <developerConnection>scm:git:git@github.com:d3adspace/caladrius.git</developerConnection>
-        <tag>1.2</tag>
+        <tag>v1.9</tag>
     </scm>
 </project>
