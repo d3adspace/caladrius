@@ -5,8 +5,10 @@ import de.d3adspace.caladrius.config.AbstractConfigIO;
 import de.d3adspace.caladrius.config.ConfigMeta;
 import de.d3adspace.caladrius.config.reader.ConfigReader;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Map;
 
 public abstract class AbstractConfigReader<ConfigObjectType> extends AbstractConfigIO<ConfigObjectType> implements ConfigReader<ConfigObjectType> {
@@ -52,11 +54,18 @@ public abstract class AbstractConfigReader<ConfigObjectType> extends AbstractCon
             return readBoolean(key);
         } else if (fieldType == Long.TYPE) {
             return readLong(key);
+        } else if (fieldType == List.class) {
+            Class<?> componentType = fieldType.getComponentType();
+            return readList(key, componentType);
+        } else if (fieldType == Map.class) {
+            return readMap(key);
         }
 
         return null;
     }
 
+    protected abstract Map readMap(String key);
+    protected abstract <ComponentType> List<ComponentType> readList(String key, Class<ComponentType> componentType);
     protected abstract String readString(String key);
     protected abstract int readInt(String key);
     protected abstract double readDouble(String key);

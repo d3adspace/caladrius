@@ -5,7 +5,11 @@ import de.d3adspace.caladrius.Caladrius;
 import de.d3adspace.caladrius.config.ConfigMeta;
 import de.d3adspace.caladrius.config.map.ContentRootMapResolver;
 
+import java.lang.reflect.Array;
 import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 public abstract class AbstractMapBasedConfigReader<ConfigObjectType> extends AbstractConfigReader<ConfigObjectType> implements ContentRootMapResolver<String, Object> {
@@ -31,6 +35,17 @@ public abstract class AbstractMapBasedConfigReader<ConfigObjectType> extends Abs
         content = doRead();
     }
 
+    @Override
+    protected Map readMap(String key) {
+        Map<String, Object> content = resolveContentRoot(key);
+        return (Map) content.get(stripKey(key));
+    }
+
+    @Override
+    protected <ComponentType> List<ComponentType> readList(String key, Class<ComponentType> componentType) {
+        Map<String, Object> content = resolveContentRoot(key);
+        return (List<ComponentType>) content.get(stripKey(key));
+    }
 
     @Override
     protected String readString(String key) {

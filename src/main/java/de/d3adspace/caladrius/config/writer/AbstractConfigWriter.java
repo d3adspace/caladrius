@@ -6,6 +6,7 @@ import de.d3adspace.caladrius.config.ConfigMeta;
 
 import java.lang.reflect.Field;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Map;
 
 public abstract class AbstractConfigWriter<ConfigObjectType> extends AbstractConfigIO<ConfigObjectType> implements ConfigWriter<ConfigObjectType> {
@@ -58,9 +59,17 @@ public abstract class AbstractConfigWriter<ConfigObjectType> extends AbstractCon
         } else if (fieldType == Long.TYPE) {
             long longValue = field.getLong(configObject);
             writeLong(key, longValue);
+        } else if (fieldType == List.class) {
+            List listValue = (List) field.get(configObject);
+            writeList(key, listValue);
+        } else if (fieldType == Map.class) {
+            Map mapValue = (Map) field.get(configObject);
+            writeMap(key, mapValue);
         }
     }
 
+    protected abstract void writeMap(String key, Map mapValue);
+    protected abstract void writeList(String key, List listValue);
     protected abstract void writeLong(String key, long longValue);
     protected abstract void writeBoolean(String key, boolean booleanValue);
     protected abstract void writeFloat(String key, float floatValue);

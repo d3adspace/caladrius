@@ -6,6 +6,7 @@ import de.d3adspace.caladrius.config.ConfigMeta;
 import de.d3adspace.caladrius.config.map.ContentRootMapResolver;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Map;
 
 public abstract class AbstractMapBasedConfigWriter<ConfigObjectType> extends AbstractConfigWriter<ConfigObjectType> implements ContentRootMapResolver<String, Object> {
@@ -14,6 +15,18 @@ public abstract class AbstractMapBasedConfigWriter<ConfigObjectType> extends Abs
 
     public AbstractMapBasedConfigWriter(ConfigMeta<ConfigObjectType> configMeta, Path path) {
         super(configMeta, path);
+    }
+
+    @Override
+    protected void writeMap(String key, Map mapValue) {
+        Map<String, Object> contentRoot = resolveContentRoot(key);
+        contentRoot.put(stripKey(key), mapValue);
+    }
+
+    @Override
+    protected void writeList(String key, List listValue) {
+        Map<String, Object> contentRoot = resolveContentRoot(key);
+        contentRoot.put(stripKey(key), listValue);
     }
 
     @Override
