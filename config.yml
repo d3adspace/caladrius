@@ -1,0 +1,14 @@
+database:
+  users:
+    1: leon
+    2: alex
+    3: yusei
+    5: lisa
+balance: 1000.02
+name: Ruby
+ids:
+- 1
+- 13
+- 14
+- 91
+age: 11

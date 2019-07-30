@@ -5,10 +5,7 @@ import de.d3adspace.caladrius.Caladrius;
 import de.d3adspace.caladrius.config.ConfigMeta;
 import de.d3adspace.caladrius.config.map.ContentRootMapResolver;
 
-import java.lang.reflect.Array;
 import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 

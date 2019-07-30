@@ -11,7 +11,7 @@ import java.nio.file.Path;
 
 public class YAMLConfigWriter<ConfigObjectType> extends AbstractMapBasedConfigWriter<ConfigObjectType> {
 
-    private final Yaml yaml = new Yaml();
+    private static final Yaml YAML = new Yaml();
 
     public YAMLConfigWriter(ConfigMeta<ConfigObjectType> configMeta, Path path) {
         super(configMeta, path);
@@ -19,7 +19,7 @@ public class YAMLConfigWriter<ConfigObjectType> extends AbstractMapBasedConfigWr
 
     @Override
     protected void doWrite() {
-        String dump = yaml.dump(getContent());
+        String dump = YAML.dumpAsMap(getContent());
 
         try {
             if (!Files.exists(getPath())) {
