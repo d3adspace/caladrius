@@ -24,14 +24,12 @@ public class YAMLConfigWriter<ConfigObjectType> extends AbstractMapBasedConfigWr
         try {
             if (!Files.exists(getPath())) {
                 Files.createFile(getPath());
-            } else {
-                try (BufferedWriter bufferedWriter = Files.newBufferedWriter(getPath())) {
-                    bufferedWriter.write("");
-                    bufferedWriter.flush();
-                }
             }
 
-            Files.writeString(getPath(), dump);
+            try (BufferedWriter bufferedWriter = Files.newBufferedWriter(getPath())) {
+                bufferedWriter.write(dump);
+                bufferedWriter.flush();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
