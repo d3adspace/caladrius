@@ -18,7 +18,7 @@ import java.nio.file.Path;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class CaladriusImpl implements Caladrius {
+public class DefaultCaladrius implements Caladrius {
 
     /**
      * All known config meta.

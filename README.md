@@ -107,7 +107,7 @@ The usage is then really simple:
 
 ```java
 import de.d3adspace.caladrius.Caladrius;
-import de.d3adspace.caladrius.CaladriusImpl;
+import de.d3adspace.caladrius.CaladriusFactory;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -120,7 +120,7 @@ public class ExampleConfigApp {
         Path path = Paths.get("config.yml");
         
         // Create new caladrius instance
-        Caladrius caladrius = new CaladriusImpl();
+        Caladrius caladrius = CaladriusFactory.createCaladrius();
         
         // Read the config
         ExampleConfig exampleConfig = caladrius.readConfig(ExampleConfig.class, path);
