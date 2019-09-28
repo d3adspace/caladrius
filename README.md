@@ -29,6 +29,17 @@ Effective configuration provider. You can read and write simple config files in 
 </repositories>
 ```
 
+**Maven dependency**
+```xml
+<dependencies>
+    <dependency>
+        <groupId>de.d3adspace.caladrius</groupId>
+        <artifactId>caladrius</artifactId>
+        <version>1.12.0</version>
+    </dependency>
+</dependencies>
+```
+
 # Example
 
 You first have to define a config model, that could look like this:
