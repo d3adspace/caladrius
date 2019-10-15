@@ -35,7 +35,7 @@ Effective configuration provider. You can read and write simple config files in 
     <dependency>
         <groupId>de.d3adspace.caladrius</groupId>
         <artifactId>caladrius</artifactId>
-        <version>1.12.0</version>
+        <version>1.13.0</version>
     </dependency>
 </dependencies>
 ```
