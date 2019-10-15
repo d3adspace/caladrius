@@ -15,11 +15,21 @@ jdk:
 notifications:
   email: false
 
+#############
+### Sonar ###
+#############
+addons:
+  sonarcloud:
+    organization: "d3adspace"
+    token:
+      secure: "JYeZnSS3sJr/vyMpXkGKnKgVh9N48EYzOAlS8CRXq/nNR9we86SuSKyeWm6vn/aqwV90Xi4tRaR2DwtwITjdJcFQ3wCzdWTMb5IEZNhO5gu+99NQ1bJr2Kf3qRx+x+pE9FrY2RQ5frAGe4+roPPimSP1Wmg/gVlsLf+bc7V7MYE9eek6S5FRDNqt0WXpSFPXeF06MbU2UEbYrvHcp5cdil2DPfPYivu6Qd+GZ3AMk0K7Dxff8d6GpSfLqNQKSemgcgilc3Z+uB14L/T+JYMe1ZNZnTOScnkK50z7AAa1BK6N6ws2/wHiruOKyD1by4zHd/sFuj572abRxY0e44fXph8gR9kaIHfxe8ftSkPWcIaHhMAqK73h0oR35f/86lq0IFBvDIOHGS45NVtZJfRRMn/otzWcZAC9tRIWJ/pD4UP97oYnycaY+2QXNhduE9ynVwVic0OnuFsgZ4Uvf1rxLSvABNO0gK7O7DqHyvAf+yzZD+kKZoSdKsIepvym/oQQvJJvEi2egxmnQeiEQeE4mGZvM3nGz1C4F5IDrZ46AA9H4Z6ocKeob/Q2DboTCQms5Org/ppwdrbeqXvJR9JjJ6OpmaPzksXhNP8fMucVx9lh5nkqucG9rm/jUwVjM5l0UbxvGpZ44m93CfqV53xwQvfLoYxsNubGmcYgz/En1IU=
+
 ####################
 ### Build script ###
 ####################
 script:
-  - mvn clean compile package install
+  - mvn clean compile
+  - mvn clean install sonar:sonar -Dsonar.projectKey=d3adspace_caladrius
 
 ##################
 ### Deployment ###
