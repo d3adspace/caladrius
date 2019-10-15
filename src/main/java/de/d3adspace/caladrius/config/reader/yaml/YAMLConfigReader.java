@@ -9,7 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Map;
 
-public class YAMLConfigReader<ConfigObjectType> extends AbstractMapBasedConfigReader<ConfigObjectType> {
+public final class YAMLConfigReader<ConfigObjectType> extends AbstractMapBasedConfigReader<ConfigObjectType> {
 
     /**
      * The yaml instance used for loading content into yaml maps.

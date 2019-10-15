@@ -1,9 +1,11 @@
 package de.d3adspace.caladrius;
 
-public class CaladriusFactory {
+import com.google.common.collect.Maps;
+
+public final class CaladriusFactory {
 
   public static Caladrius createCaladrius() {
 
-    return new DefaultCaladrius();
+    return new DefaultCaladrius(Maps.newConcurrentMap());
   }
 }

@@ -16,14 +16,18 @@ import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
-public class DefaultCaladrius implements Caladrius {
+public final class DefaultCaladrius implements Caladrius {
 
     /**
      * All known config meta.
      */
-    private final Map<Class<?>, ConfigMeta> configMeta = new ConcurrentHashMap<>();
+    private final Map<Class<?>, ConfigMeta> configMeta;
+
+    DefaultCaladrius(Map<Class<?>, ConfigMeta> configMeta) {
+        this.configMeta = configMeta;
+    }
 
     @Override
     public <ConfigObjectType> ConfigObjectType readConfig(Class<ConfigObjectType> configClazz, Path path) {
@@ -62,11 +66,8 @@ public class DefaultCaladrius implements Caladrius {
 
     private <ConfigObjectType> ConfigWriter<ConfigObjectType> createConfigWriter(ConfigMeta<ConfigObjectType> configMeta, Path path) {
 
-        switch (configMeta.getType()) {
-            default: {
-                return new YAMLConfigWriter<>(configMeta, path);
-            }
-        }
+        // We only support yaml atm
+        return new YAMLConfigWriter<>(configMeta, path);
     }
 
     /**
@@ -146,10 +147,7 @@ public class DefaultCaladrius implements Caladrius {
      */
     private <ConfigObjectType> ConfigReader<ConfigObjectType> createConfigReader(ConfigMeta<ConfigObjectType> configMeta, Path path) {
 
-        switch (configMeta.getType()) {
-            default: {
-                return new YAMLConfigReader<>(configMeta, path);
-            }
-        }
+        // We only support yaml atm
+        return new YAMLConfigReader<>(configMeta, path);
     }
 }

@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class YAMLConfigWriter<ConfigObjectType> extends AbstractMapBasedConfigWriter<ConfigObjectType> {
+public final class YAMLConfigWriter<ConfigObjectType> extends AbstractMapBasedConfigWriter<ConfigObjectType> {
 
     private static final Yaml YAML = new Yaml();
 
