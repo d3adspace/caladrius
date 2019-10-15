@@ -3,7 +3,7 @@ package de.d3adspace.caladrius.config;
 import java.lang.reflect.Field;
 import java.util.Map;
 
-public class ConfigMeta<ConfigObjectType> {
+public final class ConfigMeta<ConfigObjectType> {
 
     private final Class<ConfigObjectType> clazz;
     private final ConfigType type;
