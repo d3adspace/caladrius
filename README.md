@@ -3,7 +3,7 @@ Effective configuration provider. You can read and write simple config files in 
 
 # Build Status
 
-|             | CodeQL | Gradle Build | Gradle Publish |                                                                                           |
+| Branch             | CodeQL | Gradle Build | Gradle Publish                                                                                            |
 |-------------| ------ | ------------ | -------------- |
 | master      | [![CodeQL](https://github.com/d3adspace/caladrius/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/d3adspace/caladrius/actions/workflows/codeql-analysis.yml) | [![Gradle Build](https://github.com/d3adspace/caladrius/actions/workflows/gradle.yml/badge.svg)](https://github.com/d3adspace/caladrius/actions/workflows/gradle.yml) | [![Gradle Publish](https://github.com/d3adspace/caladrius/actions/workflows/gradle-publish.yml/badge.svg)](https://github.com/d3adspace/caladrius/actions/workflows/gradle-publish.yml) |
 
