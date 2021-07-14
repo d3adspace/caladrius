@@ -16,7 +16,7 @@ Effective configuration provider. You can read and write simple config files in 
 repositories {
   maven {
     name = "d3adspace-caladrius-github-package-registry"
-    description = "3adspace Enterprises Caladrius GitHub Package Registry"
+    description = "d3adspace Enterprises Caladrius GitHub Package Registry"
     url = "https://maven.pkg.github.com/d3adspace/caladrius/"
   }
 }

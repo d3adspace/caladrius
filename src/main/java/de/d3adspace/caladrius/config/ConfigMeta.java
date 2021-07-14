@@ -3,33 +3,26 @@ package de.d3adspace.caladrius.config;
 import java.lang.reflect.Field;
 import java.util.Map;
 
-public final class ConfigMeta<ConfigObjectType> {
+public record ConfigMeta<ConfigObjectType>(
+  Class<ConfigObjectType> clazz,
+  ConfigType type,
+  String name,
+  Map<String, Field> fields
+) {
 
-    private final Class<ConfigObjectType> clazz;
-    private final ConfigType type;
-    private final String name;
-    private final Map<String, Field> fields;
+  public Class<ConfigObjectType> getClazz() {
+    return clazz;
+  }
 
-    public ConfigMeta(Class<ConfigObjectType> clazz, ConfigType type, String name, Map<String, Field> fields) {
-        this.clazz = clazz;
-        this.type = type;
-        this.name = name;
-        this.fields = fields;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public Class<ConfigObjectType> getClazz() {
-        return clazz;
-    }
+  public ConfigType getType() {
+    return type;
+  }
 
-    public String getName() {
-        return name;
-    }
-
-    public ConfigType getType() {
-        return type;
-    }
-
-    public Map<String, Field> getFields() {
-        return fields;
-    }
+  public Map<String, Field> getFields() {
+    return fields;
+  }
 }
