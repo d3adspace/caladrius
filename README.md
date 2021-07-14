@@ -5,7 +5,7 @@ Effective configuration provider. You can read and write simple config files in 
 
 |             | CodeQL | Gradle Build | Gradle Publish |                                                                                           |
 |-------------| ------ | ------------ | -------------- |
-| master      | | | | 
+| master      | | | |
 
 # Installation / Usage
 
@@ -125,7 +125,7 @@ public class ExampleConfig {
 }
 ```
 
-The usage is then really simple: 
+The usage is then really simple:
 
 ```java
 import de.d3adspace.caladrius.Caladrius;
@@ -137,19 +137,19 @@ import java.nio.file.Paths;
 public class ExampleConfigApp {
 
     public static void main(String[] args) {
-        
+
         // Define config path
         var path = Paths.get("config.yml");
-        
+
         // Create new caladrius instance
         var caladrius = CaladriusFactory.createCaladrius();
-        
+
         // Read the config
         var exampleConfig = caladrius.readConfig(ExampleConfig.class, path);
 
         // Print out config
         System.out.println(exampleConfig);
-    
+
         // Add a new user to the users key value store
         exampleConfig.getUsers().put(5, "ruby");
 
