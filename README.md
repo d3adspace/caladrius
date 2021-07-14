@@ -3,41 +3,52 @@ Effective configuration provider. You can read and write simple config files in 
 
 # Build Status
 
-|             | Build Status                                                                                                            |
-|-------------|-------------------------------------------------------------------------------------------------------------------------|
-| Master      | [![Build Status](https://travis-ci.org/d3adspace/caladrius.svg?branch=master)](https://travis-ci.org/d3adspace/caladrius) |
-| Development | [![Build Status](https://travis-ci.org/d3adspace/caladrius.svg?branch=dev)](https://travis-ci.org/d3adspace/caladrius)    |
+|             | CodeQL | Gradle Build | Gradle Publish |                                                                                           |
+|-------------| ------ | ------------ | -------------- |
+| master      | | | | 
 
 # Installation / Usage
+
+## Gradle
+
+**Gradle repositories**
+```groovy
+repositories {
+  maven {
+    name = "d3adspace-caladrius-github-package-registry"
+    description = "3adspace Enterprises Caladrius GitHub Package Registry"
+    url = "https://maven.pkg.github.com/d3adspace/caladrius/"
+  }
+}
+```
+
+**Gradle dependencies**
+```groovy
+dependencies {
+  implementation 'de.d3adspace:caladrius:2.0.0'
+}
+```
+
+## Maven
 
 **Maven repositories**
 ```xml
 <repositories>
-    <!-- Klauke Enterprises Releases -->
     <repository>
-        <id>klauke-enterprises-maven-releases</id>
-        <name>Klauke Enterprises Maven Releases</name>
-        <url>https://repository.klauke-enterprises.com/repository/maven-releases/</url>
-    </repository>
-	
-    <!-- Klauke Enterprises Snapshots -->
-    <repository>
-        <id>klauke-enterprises-maven-snapshots</id>
-        <name>Klauke Enterprises Maven Snapshots</name>
-        <url>https://repository.klauke-enterprises.com/repository/maven-snapshots/</url>
+        <id>d3adspace-caladrius-github-package-registry</id>
+        <name>D3adspace Enterprises Caladrius GitHub Package Registry</name>
+        <url>https://maven.pkg.github.com/d3adspace/caladrius/</url>
     </repository>
 </repositories>
 ```
 
-**Maven dependency**
+**Maven dependencies**
 ```xml
-<dependencies>
-    <dependency>
-        <groupId>de.d3adspace.caladrius</groupId>
-        <artifactId>caladrius</artifactId>
-        <version>1.13.0</version>
-    </dependency>
-</dependencies>
+<dependency>
+  <groupId>de.d3adspace</groupId>
+  <artifactId>caladrius</artifactId>
+  <version>2.0.0</version>
+</dependency>
 ```
 
 # Example
@@ -128,13 +139,13 @@ public class ExampleConfigApp {
     public static void main(String[] args) {
         
         // Define config path
-        Path path = Paths.get("config.yml");
+        var path = Paths.get("config.yml");
         
         // Create new caladrius instance
-        Caladrius caladrius = CaladriusFactory.createCaladrius();
+        var caladrius = CaladriusFactory.createCaladrius();
         
         // Read the config
-        ExampleConfig exampleConfig = caladrius.readConfig(ExampleConfig.class, path);
+        var exampleConfig = caladrius.readConfig(ExampleConfig.class, path);
 
         // Print out config
         System.out.println(exampleConfig);
