@@ -5,7 +5,7 @@ Effective configuration provider. You can read and write simple config files in 
 
 |             | CodeQL | Gradle Build | Gradle Publish |                                                                                           |
 |-------------| ------ | ------------ | -------------- |
-| master      | | | |
+| master      | [![CodeQL](https://github.com/d3adspace/caladrius/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/d3adspace/caladrius/actions/workflows/codeql-analysis.yml) | [![Gradle Build](https://github.com/d3adspace/caladrius/actions/workflows/gradle.yml/badge.svg)](https://github.com/d3adspace/caladrius/actions/workflows/gradle.yml) | [![Gradle Publish](https://github.com/d3adspace/caladrius/actions/workflows/gradle-publish.yml/badge.svg)](https://github.com/d3adspace/caladrius/actions/workflows/gradle-publish.yml) |
 
 # Installation / Usage
 
