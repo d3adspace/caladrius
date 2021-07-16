@@ -9,19 +9,6 @@ public record ConfigMeta<ConfigObjectType>(
   String name,
   Map<String, Field> fields
 ) {
-
-  public Class<ConfigObjectType> getClazz() {
-    return clazz;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public ConfigType getType() {
-    return type;
-  }
-
   public Map<String, Field> getFields() {
     return fields;
   }

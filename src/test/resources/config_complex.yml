@@ -5,6 +5,6 @@ database:
 balance: 1000.02
 name: Ruby
 ids:
-- 1
-- 13
+  - 1
+  - 13
 age: 11
